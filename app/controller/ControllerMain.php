@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 class ControllerMain{
+    
     public static function home(){
         require "./app/view/view-main.php";
     }

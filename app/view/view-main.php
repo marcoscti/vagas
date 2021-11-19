@@ -24,25 +24,24 @@ if (isset($_SESSION['response'])) {
 <div class="container-cards">
     <?php
     if (count($list) > 0) :
-    ?>
-        <?php
+
         foreach ($list as $v) :
-        ?>
+    ?>
             <!--Card-->
             <div class="card">
                 <?= $v['pcd'] ? '<div class="card-header red">' : '<div class="card-header blue">' ?>
 
                 <div class="item">
-                    <?= $v['pcd'] ? '<img src="img/Wheelchair.png">' : '<img src="img/bag.png" alt="">' ?>
+                    <?= $v['pcd'] ? '<img src="img/Wheelchair.png">' : '<img src="img/bag.png">' ?>
                 </div>
                 <div class="item">
                     <h3><?= $v['titulo'] ?></h3>
                 </div>
             </div>
             <div class="card-body">
-                <strong>R$ <?= number_format($v['salario'],2,",",".");
-                
-                ?></strong>
+                <strong>R$ <?= number_format($v['salario'], 2, ",", ".");
+
+                            ?></strong>
                 <strong><?= $v['localizacao'] ?></strong>
                 <p class="descricao"><?= $v['descricao'] ?></p>
 
@@ -52,11 +51,12 @@ if (isset($_SESSION['response'])) {
             </div>
 </div>
 <!--Fim Card-->
-<?php endforeach; ?>
-<?php else : ?>
-    <h2 style="text-align:center;width:100%" class="view-message">
-        Não Existem vagas no momento!
-    </h2>
+<?php
+        endforeach;
+    else : ?>
+<h2 style="text-align:center;width:100%" class="view-message">
+    Não Existem vagas no momento!
+</h2>
 <?php endif; ?>
 </div>
 </body>

@@ -9,7 +9,7 @@ class Vaga
     public function insertVaga($data)
     {
         try {
-            $sql = "INSERT INTO vaga(pcd,titulo,salario,localizacao,descricao) VALUES(?,?,?,?,?)";
+        $sql = "INSERT INTO vaga(pcd,titulo,salario,localizacao,descricao) VALUES (?,?,?,?,?)";
             Sql::setData($sql, $data);
             return true;
         } catch (\Exception $e) {
@@ -41,8 +41,5 @@ class Vaga
         $sql = "SELECT * FROM vaga ORDER BY id DESC";
         $list = Sql::getList($sql);
         return $list;
-    }
-    public function findVaga()
-    {
     }
 }
