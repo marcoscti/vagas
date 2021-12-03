@@ -5,7 +5,7 @@ require "template" . DIRECTORY_SEPARATOR . "header.php";
 <div class="container-form">
     <div class="form-cadastro">
         <h1 class="txt-center pad-1">Anuncie a sua vaga aqui!</h1>
-        <form action="?action=newvaga" method="POST">
+        <form action="?action=insert-vaga" method="POST">
             <div class="row">
                 <label for="titulo">Título da vaga</label>
                 <input type="text" placeholder="Título da Vaga" maxlength="40" minlength="3" name="titulo" required>

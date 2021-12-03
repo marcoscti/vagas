@@ -6,10 +6,11 @@ use App\Model\Vaga;
 
 class ControllerVaga
 {
-    public $response;
+    //Função para realizar a inserção de dados no banco.
     public static function inserirVaga()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['pcd'])) {
+
             $data = [
                 0 => $_POST['pcd'],
                 1 => $_POST['titulo'],
@@ -18,6 +19,7 @@ class ControllerVaga
                 4 => $_POST['descricao'],
             ];
 
+            //Instancia um objeto de vaga
             $vaga = new Vaga();
             if ($vaga->insertVaga($data)) {
                 $_SESSION['response'] = "Nova Vaga Cadastrada com sucesso";
@@ -27,13 +29,12 @@ class ControllerVaga
             }
         }
     }
-    public static function editarVaga($id)
-    {
-    }
+
     public static function redirect($to = "")
     {
         if (!empty($to) && isset($to)) {
-            header("location:index.php?action=$to");
+            
+            
         } else {
             header("location:index.php");
         }

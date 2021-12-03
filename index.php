@@ -14,12 +14,14 @@ if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case "vaga":
             ControllerMain::novaVaga();
-            break;
-        case "newvaga":
+        break;
+        //Case para inserir a vaga
+        case "insert-vaga":
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ControllerVaga::inserirVaga();
-            }
-            break;
+        }
+        break;
+        //Se não houver requisição retorna a página de erro
         default:
             ControllerMain::erro404();
             break;

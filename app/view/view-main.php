@@ -23,6 +23,7 @@ if (isset($_SESSION['response'])) {
 ?>
 <div class="container-cards">
     <?php
+    //Validação 
     if (count($list) > 0) :
 
         foreach ($list as $v) :
@@ -37,20 +38,17 @@ if (isset($_SESSION['response'])) {
                 <div class="item">
                     <h3><?= $v['titulo'] ?></h3>
                 </div>
+                </div>
+                <div class="card-body">
+                    <strong>R$ <?= number_format($v['salario'], 2, ",", ".");?></strong>
+                    <strong><?= $v['localizacao'] ?></strong>
+                    <p class="descricao"><?= $v['descricao'] ?></p>
+                </div>
+                <div class="card-footer">
+<small>Publicado : <?= date("d M Y", strtotime($v['publicacao'])) ?> ás <?= date("H:i", strtotime($v['publicacao'])) ?></small>
+                </div>
             </div>
-            <div class="card-body">
-                <strong>R$ <?= number_format($v['salario'], 2, ",", ".");
-
-                            ?></strong>
-                <strong><?= $v['localizacao'] ?></strong>
-                <p class="descricao"><?= $v['descricao'] ?></p>
-
-            </div>
-            <div class="card-footer">
-                <small>Publicado : <?= date("d M Y", strtotime($v['publicacao'])) ?> ás <?= date("H:i", strtotime($v['publicacao'])) ?></small>
-            </div>
-</div>
-<!--Fim Card-->
+            <!--Fim Card-->
 <?php
         endforeach;
     else : ?>

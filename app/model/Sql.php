@@ -1,13 +1,8 @@
 <?php
-
 namespace App\Model;
-
 use App\Model\Conexao;
-
-
 class Sql
 {
-
     public static function setData($sql, $dados)
     {
         try {
