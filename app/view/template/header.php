@@ -20,6 +20,7 @@ require "autoload.php";
             </div>
             <ul class="menu">
                 <li><a href="index.php">Home</a></li>
+                <li><a href="?action=list-vagas">Lista de Vagas</a></li>
                 <li><a href="?action=vaga">Anunciar Vaga</a></li>
             </ul>
         </div>

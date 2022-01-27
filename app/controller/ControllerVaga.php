@@ -18,14 +18,23 @@ class ControllerVaga
                 3 => $_POST['local'],
                 4 => $_POST['descricao'],
             ];
-
-            //Instancia um objeto de vaga
             $vaga = new Vaga();
-            if ($vaga->insertVaga($data)) {
-                $_SESSION['response'] = "Nova Vaga Cadastrada com sucesso";
-                ControllerVaga::redirect();
+
+            if (isset($_POST['id'])) {
+                array_push($data,$_POST['id']);
+                if ($vaga->updateVaga($data)) {
+                    $_SESSION['response'] = "Vaga Atualizada com sucesso";
+                    ControllerVaga::redirect();
+                } else {
+                    return $_SESSION['response'] = "Erro ao Cadastrar vaga!";
+                }
             } else {
-                return $_SESSION['response'] = "Erro ao Cadastrar vaga!";
+                if ($vaga->insertVaga($data)) {
+                    $_SESSION['response'] = "Nova Vaga Cadastrada com sucesso";
+                    ControllerVaga::redirect();
+                } else {
+                    return $_SESSION['response'] = "Erro ao Cadastrar vaga!";
+                }
             }
         }
     }
@@ -33,8 +42,7 @@ class ControllerVaga
     public static function redirect($to = "")
     {
         if (!empty($to) && isset($to)) {
-            
-            
+            header("location:index.php?$to");
         } else {
             header("location:index.php");
         }

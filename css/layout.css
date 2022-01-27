@@ -119,3 +119,28 @@ nav{
 .descricao{
     margin-top: 0.5rem;
 }
+
+/*Formatação da tabela*/
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0f306d;
+    color: white;
+}
+th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+td,th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+  

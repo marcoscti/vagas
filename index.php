@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Este arquivo é responsável por gerenciar as rotas da aplicação processando as ações dos controladores.
  */
@@ -14,14 +15,20 @@ if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case "vaga":
             ControllerMain::novaVaga();
-        break;
-        //Case para inserir a vaga
+            break;
+            //Case para inserir a vaga
         case "insert-vaga":
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ControllerVaga::inserirVaga();
-        }
+            }
+            break;
+        case "list-vagas":
+            ControllerMain::listVagas();
+            break;
+        case "editar":
+            ControllerMain::editarVaga($_GET['id']);
         break;
-        //Se não houver requisição retorna a página de erro
+            //Se não houver requisição retorna a página de erro
         default:
             ControllerMain::erro404();
             break;
