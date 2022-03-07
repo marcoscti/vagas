@@ -2,54 +2,56 @@
 
 namespace App\Model;
 
-use App\Model\Sql;
-
-class Vaga
+class Usuario
 {
-    public function insertVaga($data)
+    public function insertUsuario($data)
     {
         try {
-            $sql = "INSERT INTO vaga(pcd,titulo,salario,localizacao,descricao) VALUES (?,?,?,?,?)";
+            $sql = "INSERT INTO usuario (nome, email, senha) VALUES (?,?,?)";
             Sql::setData($sql, $data);
             return true;
         } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
-    public function deleteVaga($dados)
+    
+    public function deleteUsuario($dados)
     {
         try {
-            $sql = "DELETE FROM vaga WHERE id=?";
+            $sql = "DELETE FROM usuario WHERE idusuario=?";
             Sql::setData($sql, [$dados]);
             return true;
         } catch (\Exception $e) {
             echo $e;
         }
     }
-    public function updateVaga($dados)
+
+    public function updateUsuario($dados)
     {
         try {
-            $sql = "UPDATE vaga SET pcd=?,titulo=?,salario=?,localizacao=?,descricao=? WHERE id=?";
+            $sql = "UPDATE usuario SET nome=?,email=? WHERE idusuario=?";
             Sql::setData($sql, $dados);
             return true;
         } catch (\Exception $e) {
             echo $e;
         }
     }
-    public function listVagas()
+
+    public function listUsuario()
     {
-        $sql = "SELECT * FROM vaga ORDER BY id DESC";
+        $sql = "SELECT * FROM usuario ORDER BY idusuario DESC";
         $list = Sql::getList($sql);
         return $list;
     }
-    public function buscarVaga($id)
+
+    public function buscarUsuario($email)
     {
         try {
-            $sql = "SELECT * FROM vaga WHERE id=$id";
-            $list = Sql::getList($sql);
+            $sql = "SELECT * FROM usuario WHERE email = ?";
+            $list = Sql::getData($sql, [$email]);
             return $list;
         } catch (\Exception $e) {
-            echo $e;
+            echo "ERRO: " . $e;
         }
     }
 }

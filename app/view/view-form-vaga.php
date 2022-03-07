@@ -1,8 +1,10 @@
 <?php
 
+use App\Controller\ControllerUsuario;
 use App\Model\Vaga;
 
 require "template" . DIRECTORY_SEPARATOR . "header.php";
+ControllerUsuario::verifySession();
 ?>
 <?php if (isset($_GET['id'])) :
     $vaga = new Vaga();

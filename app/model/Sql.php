@@ -13,7 +13,15 @@ class Sql
             return $e->getMessage();
         }
     }
-
+    public static function getData($sql,$data){
+        try {
+            $stm = Conexao::conectar()->prepare($sql);
+            $stm->execute($data);
+            return $stm->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
     public static function getList($sql)
     {
         try {

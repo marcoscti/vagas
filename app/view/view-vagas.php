@@ -1,10 +1,12 @@
 <?php
 require "template" . DIRECTORY_SEPARATOR . "header.php";
 
+use App\Controller\ControllerUsuario;
 use App\Model\Vaga;
 
 $vaga = new Vaga();
 $list = $vaga->listVagas();
+ControllerUsuario::verifySession();
 ?>
 
 <?php
@@ -34,6 +36,7 @@ if (isset($_SESSION['response'])) {
                         <td><?= date("d M Y", strtotime($v['publicacao'])) ?> ás <?= date("H:i", strtotime($v['publicacao'])) ?></td>
                         <td>
                             <a href="?action=editar&id=<?= $v['id'] ?>">Editar</a>
+                            <a href="?action=excluir&id=<?= $v['id'] ?>">Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

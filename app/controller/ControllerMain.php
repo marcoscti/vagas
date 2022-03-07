@@ -27,4 +27,7 @@ class ControllerMain
     public static function editarVaga($id){
         header("location:index.php?action=vaga&id=$id");
     }
+    public static function viewLogin(){
+        require "./app/view/view-login.php";
+    }
 }

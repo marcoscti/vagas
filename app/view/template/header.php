@@ -1,4 +1,7 @@
 <?php
+
+use App\Controller\ControllerUsuario;
+
 require "autoload.php";
 ?>
 <!DOCTYPE html>
@@ -12,6 +15,7 @@ require "autoload.php";
     <link rel="stylesheet" href="css/layout.css">
     <title>Vagas</title>
 </head>
+
 <body>
     <nav>
         <div class="navegacao">
@@ -19,9 +23,16 @@ require "autoload.php";
                 <a href="index.php"><img src="img/logo.png">Fake.dev</a>
             </div>
             <ul class="menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="?action=list-vagas">Lista de Vagas</a></li>
-                <li><a href="?action=vaga">Anunciar Vaga</a></li>
+                <?php if (!isset($_SESSION['logado'])) : ?>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="?action=login">Login</a></li>
+                <?php else : ?>
+                    <li><a href="#"><?= $_SESSION['logado'][0]['nome'] ?></a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="?action=list-vagas">Lista de Vagas</a></li>
+                    <li><a href="?action=vaga">Anunciar Vaga</a></li>
+                    <li><a href="?action=logout">Logout</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
