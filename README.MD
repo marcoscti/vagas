@@ -5,3 +5,9 @@
 * CSS3
 * PHP
 * MYSQL
+# Atualização para Docker
+Como forma de estudar Docker, esse projeto agora deverá rodar por meio de containers, tive algumas dificuldades para implementação, precisei da ajuda do chatGPT para realizar a configuração
+
+* Para rodar o projeto basta executar o comando: `docker-compose up -d`
+* Para acessar a página inicial: http://localhost
+* Para acessar o phpmyadmin: http://localhost:8080 passando o usuário `marcoscti` e senha `admin`
