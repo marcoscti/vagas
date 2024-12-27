@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # Serviço do MariaDB
+  db:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin" # Senha do root
+      MYSQL_DATABASE: vagas         # Nome do banco de dados
+      MYSQL_USER: marcoscti         # Usuário do banco
+      MYSQL_PASSWORD: "admin"       # Senha do usuário
+    volumes:
+      - db_data:/var/lib/mysql      # Persistência de dados
+    networks:
+      - app-network
+
+  # Serviço do PHP (com Apache)
+  php:
+    build:
+      context: .                    # Usa o Dockerfile no mesmo diretório
+    container_name: php
+    volumes:
+      - ./:/var/www/html            # Mapeia o diretório local para o Apache
+    ports:
+      - "80:80"                     # Acesso ao PHP no localhost
+    networks:
+      - app-network
+    depends_on:
+      - db                          # Espera o banco iniciar
+
+  # Serviço do Composer
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - app-network
+    command: ["tail", "-f", "/dev/null"]
+
+  # Serviço do phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db                  # Conecta ao serviço db (MariaDB)
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"                   # Acesso ao phpMyAdmin (localhost:8080)
+    networks:
+      - app-network
+
+# Definição de volumes e redes
+volumes:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge
