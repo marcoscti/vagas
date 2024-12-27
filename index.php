@@ -3,14 +3,21 @@
 /**
  * Este arquivo é responsável por gerenciar as rotas da aplicação processando as ações dos controladores.
  */
+
 session_start();
 setlocale(LC_ALL, 'pt_BR');
 require "autoload.php";
-
-use App\Controller\ControllerVaga;
 use App\Controller\ControllerMain;
+use App\Controller\ControllerVaga;
 use App\Controller\ControllerUsuario;
 use App\Model\Vaga;
+require "app" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . "Conexao.php";
+require "app" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "ControllerMain.php";
+require "app" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "ControllerVaga.php";
+require "app" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "ControllerUsuario.php";
+require "app" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . "Usuario.php";
+require "app" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . "Vaga.php";
+require "app" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . "Sql.php";
 
 //Verifica se existe uma action via URI se não existir retorna a view Home.
 if (isset($_GET['action'])) {
