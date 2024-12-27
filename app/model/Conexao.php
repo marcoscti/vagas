@@ -9,11 +9,17 @@ class Conexao
     public static function conectar()
     {
         if (!isset(self::$conexao)) {
-            //Está conectando o PHP ao driver do Mysql
-            self::$conexao = new \PDO("mysql:host=localhost;dbname=vagas;charset=utf8", "root", "");
-            //PDO::ATTR_ERRMODE: Error reporting
-            //PDO::ERRMODE_EXCEPTION: Throw exceptions.
-            self::$conexao->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            try {
+                // Cria a conexão primeiro
+                self::$conexao = new \PDO("mysql:host=db:3306;dbname=vagas;charset=utf8", "marcoscti", "admin");
+                
+                // Agora define o modo de erro
+                self::$conexao->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            
+            } catch (\PDOException $e) {
+                // Exibe o erro de conexão
+                die("Erro de conexão: " . $e->getMessage());
+            }
         }
         return self::$conexao;
     }
