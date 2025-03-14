@@ -23,7 +23,7 @@ services:
     volumes:
       - ./:/var/www/html            # Mapeia o diretório local para o Apache
     ports:
-      - "80:80"                     # Acesso ao PHP no localhost
+      - "8081:80"                     # Acesso ao PHP no localhost
     networks:
       - app-network
     depends_on:
@@ -47,7 +47,7 @@ services:
       PMA_HOST: db                  # Conecta ao serviço db (MariaDB)
       PMA_PORT: 3306
     ports:
-      - "8080:80"                   # Acesso ao phpMyAdmin (localhost:8080)
+      - "9090:80"                   # Acesso ao phpMyAdmin (localhost:8080)
     networks:
       - app-network
 

@@ -7,10 +7,12 @@
 session_start();
 setlocale(LC_ALL, 'pt_BR');
 require "autoload.php";
+
 use App\Controller\ControllerMain;
 use App\Controller\ControllerVaga;
 use App\Controller\ControllerUsuario;
 use App\Model\Vaga;
+
 require "app" . DIRECTORY_SEPARATOR . "model" . DIRECTORY_SEPARATOR . "Conexao.php";
 require "app" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "ControllerMain.php";
 require "app" . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "ControllerVaga.php";
@@ -39,7 +41,7 @@ if (isset($_GET['action'])) {
         case "login":
             ControllerMain::viewLogin();
             break;
-            //Case para inserir a vaga
+        //Case para inserir a vaga
         case "insert-vaga":
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ControllerVaga::inserirVaga();
@@ -56,7 +58,7 @@ if (isset($_GET['action'])) {
             $vaga->deleteVaga($_GET['id']);
             ControllerVaga::redirect("action=list-vagas");
             break;
-            //Se não houver requisição retorna a página de erro
+        //Se não houver requisição retorna a página de erro
         default:
             ControllerMain::erro404();
             break;
